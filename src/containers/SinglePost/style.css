@@ -1,0 +1,16 @@
+.Body {
+  margin-top: 20px;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.Body .Body-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.Body-header-button {
+  text-decoration: none;
+  min-width: 48px;
+}
