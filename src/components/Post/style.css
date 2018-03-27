@@ -1,0 +1,19 @@
+.Post {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  padding: 15px;
+  margin: 10px 0 20px 0;
+}
+
+.Post .Post-footer {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.Post-footer-button {
+  margin: 10px;
+}
+
+.Author {
+  color: gray;
+}
