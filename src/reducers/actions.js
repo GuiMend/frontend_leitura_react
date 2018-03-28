@@ -13,6 +13,11 @@ export const fillPosts = posts => ({
   posts
 });
 
+export const updateSinglePost = post => ({
+  type: types.UPDATE_SINGLE_POST,
+  post
+});
+
 export const fillComments = comments => ({
   type: types.FILL_COMMENTS,
   comments
@@ -47,8 +52,8 @@ export const votePostAction = (id, vote) => dispatch => {
   PostUtil.votePost(id, body).then(response => {
     if (response.ok) {
       response.json().then(res => {
-        // dispatch(fillCategories(res.categories));
         console.log("OK:", res);
+        dispatch(updateSinglePost(res));
       });
     } else {
       console.log("error code:", response);
@@ -75,6 +80,19 @@ export const getPostCommentsAction = id => dispatch => {
     if (response.ok) {
       response.json().then(res => {
         dispatch(fillComments(res));
+        console.log("OK:", res);
+      });
+    } else {
+      console.log("error code:", response);
+    }
+  });
+};
+
+export const createNewPostAction = post => dispatch => {
+  PostUtil.createNewPost(post).then(response => {
+    if (response.ok) {
+      response.json().then(res => {
+        // dispatch(fillComments(res));
         console.log("OK:", res);
       });
     } else {

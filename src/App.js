@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import ShowAllPosts from "./containers/ShowAllPosts";
 import SinglePost from "./containers/SinglePost";
+import NewPost from "./containers/NewPost";
 import { Route } from "react-router";
 
 class App extends Component {
@@ -13,6 +14,7 @@ class App extends Component {
         <Route exact path="/" component={ShowAllPosts} />
         <Route exact path="/category/:categoryName" component={ShowAllPosts} />
         <Route path="/category/:categoryName/post/:id" component={SinglePost} />
+        <NewPost />
       </div>
     );
   }

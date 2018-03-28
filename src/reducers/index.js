@@ -8,6 +8,13 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
+    case types.UPDATE_SINGLE_POST:
+      const modifiedPost = state.posts.findIndex(_ => _.id === action.post.id);
+      console.log("index", modifiedPost);
+      state.posts[modifiedPost] = action.post;
+      console.log("posts", state.posts);
+      return { ...state };
+
     case types.FILL_CATEGORIES:
       return { ...state, categories: action.categories };
 
