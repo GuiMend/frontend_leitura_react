@@ -36,9 +36,14 @@ class ShowAllPosts extends Component {
     return (
       <div className="Body">
         <div className="Body-header">
-          <Link to="/new-post" className="Body-header-button">
+          <button
+            onClick={() =>
+              (document.getElementById("new-post-container").style.display =
+                "block")
+            }
+          >
             New Post
-          </Link>
+          </button>
           Sort by:
           <button
             className="Body-header-button"
@@ -62,6 +67,18 @@ class ShowAllPosts extends Component {
       </div>
     );
   }
+
+  votePost = (id, body) => {
+    // const index = this.state.posts.findIndex(_ => _.id === id);
+    // const vote = body === "upVote" ? 1 : -1;
+    // let newPosts = this.state.posts;
+    // newPosts[index].voteScore = newPosts[index].voteScore + vote;
+    // this.setState({
+    //   posts: newPosts
+    // });
+    this.props.votePost(id, body);
+    // this.forceUpdate();
+  };
 
   sortBy = (option, list) => {
     list.sort((first, second) => {

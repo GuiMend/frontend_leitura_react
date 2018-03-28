@@ -12,7 +12,8 @@ const Post = ({
   commentCount,
   voteScore,
   category,
-  votePost
+  votePost,
+  deletePost
 }) => (
   <div className="Post">
     <Link
@@ -30,7 +31,6 @@ const Post = ({
     </h5>
     <p>{body}</p>
     <span className="Post-footer">
-      <span>Comments: {commentCount}</span>
       <span>
         Votes: {voteScore}{" "}
         <button
@@ -46,6 +46,15 @@ const Post = ({
           Down
         </button>
       </span>
+      <span>Comments: {commentCount}</span>
+      <button
+        className="Post-footer-button"
+        onClick={() => {
+          deletePost(id);
+        }}
+      >
+        Delete
+      </button>
     </span>
   </div>
 );
