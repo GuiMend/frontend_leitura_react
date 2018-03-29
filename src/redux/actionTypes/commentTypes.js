@@ -1,0 +1,4 @@
+export const DELETE_SINGLE_COMMENT = "app/DELETE_SINGLE_COMMENT";
+export const UPDATE_SINGLE_COMMENT = "app/UPDATE_SINGLE_COMMENT";
+export const FILL_COMMENTS = "app/FILL_COMMENTS";
+export const ADD_COMMENT = "app/ADD_COMMENT";
