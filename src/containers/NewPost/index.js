@@ -1,10 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import * as CONSTANTS from "../../util";
 import { postAction } from "../../redux/actions";
-import Post from "../../components/Post";
-import Comment from "../../components/Comment";
 import PostForm from "../../components/PostForm";
 import "./style.css";
 

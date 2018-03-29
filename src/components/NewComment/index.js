@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import * as CONSTANTS from "../../util";
 import "./style.css";
 
 import CommentForm from "../CommentForm";

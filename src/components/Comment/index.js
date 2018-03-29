@@ -22,7 +22,6 @@ class Comment extends Component {
       timestamp,
       body,
       voteScore,
-      category,
       voteComment,
       deleteComment
     } = this.props;

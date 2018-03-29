@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 
-import * as CONSTANTS from "../../util";
 import { commentAction, postAction } from "../../redux/actions";
 import Post from "../../components/Post";
 import Comment from "../../components/Comment";
