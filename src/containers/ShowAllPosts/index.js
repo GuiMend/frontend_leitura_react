@@ -2,37 +2,21 @@ import React, { Component } from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { Link } from "react-router-dom";
 
-import * as CONSTANTS from "../../util";
-import { getAllPostsAction, votePostAction } from "../../reducers/actions";
+import { postAction } from "../../redux/actions";
 import Post from "../../components/Post";
 import "./style.css";
 
 class ShowAllPosts extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      posts: []
-    };
-  }
-
   componentDidMount() {
     this.props.getAllPosts();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const posts = nextProps.location.state
-      ? nextProps.location.state.posts
-      : nextProps.posts;
-    this.setState({ posts: posts });
-  }
-
   render() {
-    const { posts } = this.state;
-    const { votePost } = this.props;
-
+    const { votePost, deletePost, posts, match } = this.props;
+    let displayPosts = match.params.categoryName
+      ? posts.filter(post => post.category === match.params.categoryName)
+      : posts;
     return (
       <div className="Body">
         <div className="Body-header">
@@ -58,27 +42,20 @@ class ShowAllPosts extends Component {
             Date
           </button>
         </div>
-        {posts.map(post => (
-          <Post key={post.id} {...post} votePost={votePost} />
+        {displayPosts.map(post => (
+          <Post
+            key={post.id}
+            {...post}
+            votePost={votePost}
+            deletePost={deletePost}
+          />
         ))}
-        {posts.length === 0 && (
-          <div className="No-Posts">No posts to show :(</div>
+        {displayPosts.length === 0 && (
+          <div className="No-Posts">No posts to show</div>
         )}
       </div>
     );
   }
-
-  votePost = (id, body) => {
-    // const index = this.state.posts.findIndex(_ => _.id === id);
-    // const vote = body === "upVote" ? 1 : -1;
-    // let newPosts = this.state.posts;
-    // newPosts[index].voteScore = newPosts[index].voteScore + vote;
-    // this.setState({
-    //   posts: newPosts
-    // });
-    this.props.votePost(id, body);
-    // this.forceUpdate();
-  };
 
   sortBy = (option, list) => {
     list.sort((first, second) => {
@@ -91,12 +68,13 @@ class ShowAllPosts extends Component {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  posts: state.post.posts
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllPosts: () => dispatch(getAllPostsAction()),
-  votePost: (id, body) => dispatch(votePostAction(id, body))
+  getAllPosts: () => dispatch(postAction.getAllPostsAction()),
+  votePost: (id, body) => dispatch(postAction.votePostAction(id, body)),
+  deletePost: id => dispatch(postAction.deletePostAction(id))
 });
 
 export default compose(

@@ -4,10 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 
-import {
-  getAllCategoriesAction,
-  getAllPostsAction
-} from "../../reducers/actions";
+import { postAction, categoryAction } from "../../redux/actions";
 import "./style.css";
 
 class Header extends Component {
@@ -38,7 +35,7 @@ class Header extends Component {
     return (
       <div>
         <div className="Header">
-          <h1>My Readable</h1>
+          <h1>My Reads</h1>
         </div>
         <div className="Tabs">
           <Link
@@ -73,14 +70,14 @@ class Header extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories,
-  posts: state.posts,
-  comments: state.comments
+  categories: state.category.categories,
+  posts: state.post.posts,
+  comments: state.comment.comments
 });
 
 const mapDispatchToProps = dispatch => ({
-  getAllPosts: () => dispatch(getAllPostsAction()),
-  getAllCategories: () => dispatch(getAllCategoriesAction())
+  getAllPosts: () => dispatch(postAction.getAllPostsAction()),
+  getAllCategories: () => dispatch(categoryAction.getAllCategoriesAction())
 });
 
 export default compose(

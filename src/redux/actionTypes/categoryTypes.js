@@ -1,0 +1,1 @@
+export const FILL_CATEGORIES = "app/FILL_CATEGORIES";

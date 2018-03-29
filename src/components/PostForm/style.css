@@ -1,0 +1,26 @@
+.New-Post {
+  display: none;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
+  position: absolute;
+  padding: 15px;
+  bottom: 0px;
+  right: 10px;
+  height: 400px;
+  width: 600px;
+}
+
+.New-Post-content {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.New-Post-content-input {
+  margin-left: 10px;
+  flex-grow: 1;
+}
+
+.New-Post-Header-Button {
+  margin: 10px;
+  float: right;
+}
