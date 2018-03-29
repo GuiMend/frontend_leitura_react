@@ -5,6 +5,10 @@
   margin: 10px 0 20px 0;
 }
 
+.Post-header-button {
+  float: right;
+}
+
 .Post .Post-footer {
   display: flex;
   justify-content: space-evenly;

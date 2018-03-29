@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import * as CONSTANTS from "../../util";
-import { createNewPostAction } from "../../reducers/actions";
+import { postAction } from "../../redux/actions";
 import Post from "../../components/Post";
 import Comment from "../../components/Comment";
+import PostForm from "../../components/PostForm";
 import "./style.css";
 
 class NewPost extends Component {
@@ -48,61 +49,26 @@ class NewPost extends Component {
           </button>
         </h4>
         <div>
-          <form>
-            <div className="New-Post-content">
-              Title:
-              <input
-                className="New-Post-content-input"
-                type="text"
-                name="title"
-                value={this.state.title}
-                onChange={e => this.handleChange(e.target.value, "title")}
-              />
-            </div>
-            <div className="New-Post-content">
-              Author:
-              <input
-                className="New-Post-content-input"
-                type="text"
-                name="author"
-                value={this.state.author}
-                onChange={e => this.handleChange(e.target.value, "author")}
-              />
-            </div>
-            <div className="New-Post-content">
-              Body:
-              <input
-                className="New-Post-content-input"
-                type="text"
-                name="body"
-                value={this.state.body}
-                onChange={e => this.handleChange(e.target.value, "body")}
-              />
-            </div>
-            <select
-              onChange={e => this.handleChange(e.target.value, "category")}
-            >
-              {this.props.categories.map((_, i) => (
-                <option key={i} value={_.path}>
-                  {_.name}
-                </option>
-              ))}
-            </select>
-            <input
-              type="submit"
-              onClick={() => this.createNewPost(this.state, this.props)}
-            />
-          </form>
+          <PostForm
+            {...this.state}
+            handleChange={this.handleChange}
+            categories={this.props.categories}
+            createNewPost={this.createNewPost}
+          />
         </div>
       </div>
     );
   }
 
-  createNewPost = (post, props) => {
+  createNewPost = event => {
+    event.preventDefault();
+    const post = this.state;
     post.id = "" + Math.floor(Math.random() * 1000000000);
     post.timestamp = Date.now();
-    post.category = post.category ? post.category : props.categories[0].path;
-    props.createPost(post);
+    post.category = post.category
+      ? post.category
+      : this.props.categories[0].path;
+    this.props.createPost(post);
   };
 
   handleChange = (value, prop) => {
@@ -111,11 +77,11 @@ class NewPost extends Component {
 }
 
 const mapStateToProps = state => ({
-  categories: state.categories
+  categories: state.category.categories
 });
 
 const mapDispatchToProps = dispatch => ({
-  createPost: post => dispatch(createNewPostAction(post))
+  createPost: newPost => dispatch(postAction.createNewPostAction(newPost))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewPost);
