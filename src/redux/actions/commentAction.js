@@ -51,7 +51,6 @@ export const getPostCommentsAction = id => dispatch => {
     if (response.ok) {
       response.json().then(res => {
         dispatch(fillComments(res));
-        console.log("OK:", res);
       });
     } else {
       console.log("error code:", response);

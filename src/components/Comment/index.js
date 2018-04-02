@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import * as CONSTANTS from "../../util";
 import "./style.css";
@@ -99,6 +100,17 @@ class Comment extends Component {
     this.setState({ [prop]: value });
   };
 }
+
+Comment.propTypes = {
+  id: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
+  body: PropTypes.string.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+  voteComment: PropTypes.func.isRequired,
+  voteScore: PropTypes.number.isRequired,
+  updateComment: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   updateComment: (id, body) => dispatch(commentAction.updateComment(id, body))

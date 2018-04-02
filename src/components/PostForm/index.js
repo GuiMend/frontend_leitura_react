@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const PostForm = ({
   title,
@@ -10,7 +11,6 @@ const PostForm = ({
   edit = false
 }) => (
   <form>
-    {console.log(author)}
     <div className="New-Post-content">
       Title:
       <input
@@ -56,5 +56,14 @@ const PostForm = ({
     <input type="submit" onClick={e => createNewPost(e)} />
   </form>
 );
+
+PostForm.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string,
+  body: PropTypes.string.isRequired,
+  categories: PropTypes.array,
+  createNewPost: PropTypes.func.isRequired,
+  edit: PropTypes.bool
+};
 
 export default PostForm;

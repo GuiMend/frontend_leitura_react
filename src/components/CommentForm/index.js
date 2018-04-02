@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 const CommentForm = ({
   author = null,
@@ -34,5 +35,13 @@ const CommentForm = ({
     <input type="submit" onClick={e => createNewComment(e)} />
   </form>
 );
+
+CommentForm.propTypes = {
+  author: PropTypes.string,
+  body: PropTypes.string.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  createNewComment: PropTypes.number.isRequired,
+  edit: PropTypes.bool
+};
 
 export default CommentForm;
