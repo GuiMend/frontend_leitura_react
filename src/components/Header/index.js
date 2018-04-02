@@ -21,7 +21,10 @@ class Header extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.location) {
+    if (
+      nextProps.categories &&
+      this.props.categories !== nextProps.categories
+    ) {
       const value = nextProps.categories.findIndex(_ =>
         nextProps.location.pathname.includes(_.path)
       );
@@ -53,7 +56,7 @@ class Header extends Component {
             <Link
               key={tab.name}
               to={{
-                pathname: `/category/${tab.path}`,
+                pathname: `/${tab.path}`,
                 state: { posts: posts.filter(_ => _.category === tab.name) }
               }}
               className="Tab-button"

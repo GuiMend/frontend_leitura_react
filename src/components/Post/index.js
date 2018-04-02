@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as CONSTANTS from "../../util";
@@ -64,7 +65,7 @@ class Post extends Component {
           </button>
           <Link
             to={{
-              pathname: `/category/${category}/post/${id}`,
+              pathname: `/${category}/${id}`,
               state: { post_id: id }
             }}
           >
@@ -122,6 +123,20 @@ class Post extends Component {
     this.setState({ [prop]: value });
   };
 }
+
+Post.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  timestamp: PropTypes.number.isRequired,
+  body: PropTypes.string.isRequired,
+  commentCount: PropTypes.number.isRequired,
+  category: PropTypes.string.isRequired,
+  deletePost: PropTypes.func.isRequired,
+  votePost: PropTypes.func.isRequired,
+  voteScore: PropTypes.number.isRequired,
+  updatePost: PropTypes.func.isRequired
+};
 
 const mapDispatchToProps = dispatch => ({
   updatePost: (id, body) => dispatch(postAction.updatePost(id, body))
